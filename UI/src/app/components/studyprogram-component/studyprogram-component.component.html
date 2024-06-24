@@ -1,0 +1,43 @@
+<div class="header-container">
+  <h1>Study programs</h1>
+  <button class="add-button" (click)="toggleAddPopup()">Add a new study program</button>
+</div>
+
+<div *ngIf="showAddPopup" class="popup">
+  <form (submit)="addStudyProgram()">
+    <label for="shortName">Short name:</label>
+    <input type="text" id="shortName" name="shortName" [(ngModel)]="shortName">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="name">
+    <button type="submit">Add</button>
+  </form>
+</div>
+
+<div *ngIf="showUpdatePopup" class="popup">
+  <form (submit)="updateStudyProgram()">
+    <label for="shortName">Short name:</label>
+    <input type="text" id="shortName" name="shortName" [(ngModel)]="shortName">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="name">
+    <button type="submit">Update</button>
+  </form>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Short name</th>
+      <th>Name</th>
+      <th>Update</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let studyProgram of studyPrograms">
+      <td>{{ studyProgram.shortName }}</td>
+      <td>{{ studyProgram.name }}</td>
+      <td><button (click)="populateAndToggleUpdatePopup(studyProgram)">Update</button></td>
+      <td><button (click)="deleteStudyProgram(studyProgram.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,17 @@
+<div>
+  <h2>Login</h2>
+  <form (ngSubmit)="login()">
+    <div class="login-container">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required [(ngModel)]="username">
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required [(ngModel)]="password">
+      </div>
+      <button type="submit" id="submitButton">Login</button>
+      <button type="button" (click)="loginWithGitHub()">Sign in with github</button>
+    </div>
+  </form>
+</div>

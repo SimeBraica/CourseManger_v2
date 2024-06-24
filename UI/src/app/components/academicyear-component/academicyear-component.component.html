@@ -1,0 +1,46 @@
+<div class="header-container">
+  <h1>Academic Years</h1>
+  <button class="add-button" (click)="toggleAddPopup()">Add a new academic year</button>
+  <form (submit)="LoadAcademicYears()">
+    <label>
+      <input type="checkbox" name="sortingCheckbox" [(ngModel)]="isSorted"> Sorted (checked for yes, unchecked for no)
+    </label>
+    <label>
+      <input type="checkbox" name="filteringCheckbox" [(ngModel)]="isActive"> Active (checked for yes, unchecked for no)
+    </label>
+    <input type="number" name="maxResults" min="1" max="1000" [(ngModel)]="maxResultsPerPage">
+    <input type="number" name="currentPage" min="1" max="1000" [(ngModel)]="currentPage">
+    <button type="submit">Load academic years</button>
+  </form>
+</div>
+
+<div *ngIf="showAddPopup" class="popup">
+  <form (submit)="addAcademicYear()">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="name">
+    <label for="active">Active:</label>
+    <input type="checkbox" id="active" name="active" [(ngModel)]="active">
+    <button type="submit">Add</button>
+  </form>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Active</th>
+      <th>Details</th>
+      <th>Update</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let year of academicYears">
+      <td>{{ year.name }}</td>
+      <td>{{ year.active }}</td>
+      <td><button (click)="ShowAcademicYearsDetails(year.id)">Click for details</button></td>
+      <td><button>Update</button></td>
+      <td><button (click)="RemoveAcademicYear(year.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,49 @@
+<div>
+  <div class="header-container">
+    <h1>Courses</h1>
+    <button class="add-button" (click)="toggleAddPopup()">Add a new course</button>
+    <div *ngIf="showAddPopup" class="popup">
+      <form (submit)="addCourseToAcademicYear(id)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="name">
+        <label for="ISVU_ID">ISVU_ID:</label>
+        <input type="text" id="ISVU_ID" name="isvuId" [(ngModel)]="isvuId">
+        <label for="ects">Ects:</label>
+        <input type="text" id="ects" name="ects" [(ngModel)]="ects">
+        <label for="semester">Semester:</label>
+        <input type="text" id="semester" name="semester" [(ngModel)]="semester">
+        <label for="studyProgram">Study Program:</label>
+        <select id="studyProgram" name="studyProgram" [(ngModel)]="studyProgramId">
+          <option *ngFor="let studyProgram of studyPrograms" [value]="studyProgram.id">
+            {{ studyProgram.shortName }}
+          </option>
+        </select>
+        <button type="submit">Add</button>
+      </form>
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Course Name</th>
+        <th>Study program</th>
+        <th>ISVU_ID</th>
+        <th>ECTS</th>
+        <th>Semester</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courses">
+        <td>{{ course.name }}</td>
+        <td>{{ course.shortName }}</td>
+        <td>{{ course.isvuId}}</td>
+        <td>{{ course.ects }}</td>
+        <td>{{ course.semester }}</td>
+        <td><button>Update</button></td>
+        <td><button>Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
